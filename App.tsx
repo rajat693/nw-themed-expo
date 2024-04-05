@@ -1,18 +1,32 @@
-import { GluestackUIProvider,Box } from '@gluestack-ui/themed';
-import { config } from '@gluestack-ui/config';
+import {
+  GluestackUIProvider as ThemedProvider,
+  Link,
+  LinkText,
+} from "@gluestack-ui/themed";
+import { config } from "@gluestack-ui/config";
 import "./global.css";
-import { View, Text } from 'react-native';
+import { SafeAreaView } from "react-native";
+import { GluestackUIProvider as NativewindProvider } from "./components/ui/gluestack-ui-provider";
+import { Link as NWLink, LinkText as NWLinkText } from "./components/ui";
 
 export default function App() {
   return (
-    // <GluestackUIProvider config={config}>
-    //   <Box justifyContent="center" alignItems="center" flex={1} >
-    //     <Text>Open up App.js to start working on your app!</Text>
-    //   </Box>
-    // </GluestackUIProvider>
+    <>
+      <ThemedProvider config={config}>
+        <SafeAreaView style={{ flex: 1 }}>
+          <Link href="https://gluestack.io/" isExternal>
+            <LinkText>gluestack</LinkText>
+          </Link>
+        </SafeAreaView>
+      </ThemedProvider>
 
-    <View className='bg-red-500 flex-1 items-center justify-center'>
-      <Text>jkjfbvfdkjv</Text>
-    </View>
+      <NativewindProvider>
+        <SafeAreaView style={{ flex: 1, gap: 30 }}>
+          <NWLink href="https://gluestack.io/" isExternal>
+            <NWLinkText>gluestack</NWLinkText>
+          </NWLink>
+        </SafeAreaView>
+      </NativewindProvider>
+    </>
   );
 }
